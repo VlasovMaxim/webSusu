@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить книгу</title>
+</head>
+<body>
+    <h1>Удалить книгу "{{ book.title }}"?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'book_list' %}">Отмена</a>
+</body>
+</html>

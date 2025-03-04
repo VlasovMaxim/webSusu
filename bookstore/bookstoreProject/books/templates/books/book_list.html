@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог книг</title>
+    <link rel="stylesheet" href="{% static 'books/styles.css' %}">
+</head>
+<body>
+<div class="container">
+    <!-- Навигация: регистрация / вход / выход -->
+    <div class="auth-section">
+        {% if user %}
+            <p>Вы вошли как: <strong>{{ user.username }}</strong> ({{ user.role }})</p>
+            <a href="{% url 'logout' %}" class="logout-button">Выйти</a>
+            <a href="{% url 'profile' %}">Личный кабинет</a>
+        {% else %}
+            <a href="{% url 'register' %}" class="register-button">Зарегистрироваться</a>
+            <a href="{% url 'login' %}" class="login-button">Войти</a>
+        {% endif %}
+    </div>
+
+    <h1>Список книг</h1>
+
+    <!-- Кнопка добавления книги (только для авторизованных пользователей) -->
+    {% if user %}
+        <a href="{% url 'book_create' %}" class="add-button">Добавить книгу</a>
+    {% endif %}
+
+    <div class="list_books_container">
+        <ul class="cards_books">
+            {% for book in page_obj %}
+                <li class="card_book">
+                    <h2>{{ book.title }}</h2>
+                    <p>{{ book.author }}</p>
+                    <p>{{ book.price }} руб.</p>
+
+                    <!-- Кнопки редактирования / удаления (только для администраторов) -->
+                    {% if user and user.role == "admin" %}
+                        <a href="{% url 'book_update' book.id %}">Изменить</a>
+                        <a href="{% url 'book_delete' book.id %}">Удалить</a>
+                    <form action="{% url 'add_to_cart' book.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Положить в корзину</button>
+</form>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>Книги не найдены.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

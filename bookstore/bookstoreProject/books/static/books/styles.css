@@ -1,0 +1,110 @@
+/* Общие стили */
+body {
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+/* Заголовки */
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.add_new_element {
+    text-decoration: none;
+    padding: 8px 12px;
+    background: #008918;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+.add_new_element:hover {
+    background: #03c225;
+}
+
+.list_books_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cards_books {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+    width: 100%;
+}
+
+.card_book {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    height: auto;
+}
+
+.card_book h2, .card_book p, .card_book a {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.card_book h2 {
+
+}
+
+
+/* Пагинация */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 8px 12px;
+    background: #007bff;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background: #0056b3;
+}
+
+.register-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
